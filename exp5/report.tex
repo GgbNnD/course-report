@@ -1,0 +1,425 @@
+%!TEX program = xelatex
+
+\documentclass[12pt]{article}
+% \usepackage[utf8]{inputenc}
+\usepackage[UTF8]{ctex}
+\usepackage{indentfirst}
+\usepackage{lmodern}% http://ctan.org/pkg/lm
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{amsmath}%数学
+\usepackage{amsthm}%数学定理、证明
+\usepackage{graphicx}%graphicx基于graphics,更方便
+% \usepackage{subfig}%图像
+\usepackage{subfigure}
+\usepackage{booktabs}%表格
+\usepackage{tabularx}%表格
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{relsize}
+\usepackage[usenames]{color}   
+\usepackage{fontspec}
+%更改页边距
+\usepackage{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+%并列图片
+%\begin{figure}[H]
+%	\begin{minipage}[t]{0.5\textwidth}
+	%		\centering
+	%		\includegraphics[width=0.8\textwidth]{img1}
+	%		\caption{img1\label{fig:1}}
+	%	\end{minipage}
+%	\qquad
+%	\begin{minipage}[t]{0.5\textwidth}
+	%		\centering
+	%		\includegraphics[width=0.8\textwidth]{img2}
+	%		\caption{img2\label{fig:2}}
+	%	\end{minipage}
+%\end{figure}
+
+%设置enumerate环境缩进两个字符
+\usepackage{enumitem}
+\setlist[enumerate]{listparindent=\parindent}
+
+%更改enumerate编号样式
+%\renewcommand{\labelenumi}{(\theenumi)}
+%{\labelenumi}标明你要修改的那一级标签，如果是第2层，就是\labelenumii，以此类推；
+%{(\theenumi)}用于表达你想要改成的标签式样，我是在原式样外面加括号，所以在\theenumi两边加了括号。其他参数的使用方法类似。
+
+%\usepackage{colortbl}%表格颜色
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage[rightcaption]{sidecap}
+\usepackage{hyperref}
+\usepackage{float}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black
+}%解决目录红框问题
+\lstset{
+ columns=fixed,       
+ numbers=left,                                        % 在左侧显示行号
+ numberstyle=\tiny\color{gray},                       % 设定行号格式
+ frame=none,                                          % 不显示背景边框
+ backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+ showstringspaces=false,                              % 不显示字符串中的空格
+ breaklines=true,                                     % 对过长的代码自动换行
+ language=python,                                     % 设置语言
+}
+\newcommand{\myd}{\;\mathrm{d}}%自定义积分变量命令
+% \renewcommand{\listtablename}{表格}%改变listoftable的名字
+\renewcommand{\arraystretch}{1.8}%The height of each row, relative to its default height
+% \setmonofont{Consolas}
+\renewcommand\refname{参考网站}
+% \setlength{\tabcolsep}{18pt}%The space between the text and the left/right border of its containing cell
+% \setlength{\arrayrulewidth}{0.4mm}%sets the thickness of the borders of the table
+
+\setlength{\parindent}{2em}%控制首行缩进
+\addtolength{\parskip}{3pt}%\parskip 控制段落(paragraph)距离
+%\singlespacing%单倍行距
+%\doublespacing%双倍行距
+%\setstretch{1.25}%设置行距为1.25
+\onehalfspacing %1.5倍行距
+%\begin{doublespacing} 行距环境 \end{doublespacing}
+\graphicspath{{./figures/}} % 指定图片所在文件夹
+%\newtheorem{definition}[定义]{section}
+%定制环境: {环境名}[编号延续]{显示名}[编号层次]
+\newcommand{\daima}[1]{{\ttfamily{#1}}}
+
+% 列表行间距
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=-4pt}
+\setlist[enumerate]{itemsep=-4pt}
+
+% 表格宽度
+\newcolumntype{H}{>{\centering\arraybackslash}p{2cm}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{2.4cm}}
+
+
+\usepackage{algorithm2e}
+\usepackage{amssymb}
+\begin{document}
+\begin{titlepage}
+	\vspace*{-2.5cm}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\linewidth]{zjdx}
+	\end{figure}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.3\linewidth]{QSY}
+	\end{figure}
+	\vspace{-0.2cm}
+	\begin{center}
+		\Huge{\textbf{二极管双平衡混频与吉尔伯特双平衡混频}}\\
+	\end{center}
+	\vspace*{0.8cm}
+	\begin{center}
+		\larger[2]{
+			\begin{tabular}{cc}
+				姓\hspace{12pt}名 & \underline{\makebox[220pt]{\kaishu 黄鹤翔}}             \\
+				学\hspace{12pt}号 & \underline{\makebox[220pt]{3230106231}}                 \\
+				院\hspace{12pt}系 & \underline{\makebox[220pt]{\kaishu 信息与电子工程学院}} \\
+				指导老师          & \underline{\makebox[220pt]{\kaishu 金向东/龚淑君}}             \\
+			\end{tabular}
+		}
+	\end{center}
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}%重新开始标号,阿拉伯数字形式S
+
+\section{实验目的}
+
+\begin{enumerate}
+	\item 掌握二极管双平衡混频器和吉尔伯特双平衡混频器的工作原理
+	\item 测量混频电路各主要参数
+\end{enumerate}
+
+\section{实验原理}
+
+混频器主要应用于通信系统的发射和接收机中。混频是频谱的线性搬移，输出信号与输入信号相比，只是载波频率发生了变化，频谱结构没有变化，输出信号的波形也没有变化。实现混频的基本方法是将两个输入信号相乘。这可以通过器件的非线性特性实现，这些器件主要有二极管、三极管和场效应管。在发射机中使用上混频，本振信号将已调制的中频信号搬移到射频频段。在接收机中使用下混频，通过混频，将接收到的射频信号搬移到中频频段。
+
+设混频器的本振输入信号为：
+\begin{equation}
+v_{LO}(t) = V_{LO} \cos \omega_{LO} t
+\tag{3.5.1}
+\end{equation}
+
+混频器的另外一路信号为：
+\begin{equation}
+v_i = V_i \cos \omega_i t
+\tag{3.5.2}
+\end{equation}
+
+两路信号相乘，得到的输出信号为：
+\begin{equation}
+v_o = \frac{1}{2} V_{LO} V_i \left[ \cos(\omega_i + \omega_{LO})t + \cos(\omega_i - \omega_{LO})t \right]
+\tag{3.5.3}
+\end{equation}
+
+对于发射机系统中的上混频，是把差频滤除，保留和频信号；对于接收机系统中的下混频，是把和频滤除，保留差频信号。
+
+\subsection{混频器的主要性能指标}
+\begin{enumerate}
+	\item 混频增益
+	\item 线性度
+	\item 隔离度
+\end{enumerate}
+
+\subsection{二极管双平衡混频器}
+在大信号的作用下，二极管的伏安特性可以看作是从原点出发，斜率为 $g_D$ 的直线，二极管可以看成是受大信号控制的单向开关。若二极管两端的电压为 $v_D(t)$，其伏安特性为：
+\begin{equation}
+i_D = g_D S_1(\omega t) v_D(t)
+\tag{3.5.5}
+\end{equation}
+
+假设在二极管两端所加的电压为 $v_D(t) = v_{LO}(t) + v_i(t)$，其中 $v_{LO}(t) = V_{LO} \cos \omega_{LO} t$ 是本振信号，为大信号；$v_i(t) = V_i \cos \omega_i t$ 是小信号。
+
+开关函数 $S_1(\omega_{LO} t) = \frac{2}{\pi} \cos \omega_{LO} t - \frac{2}{3\pi} \cos \omega_{LO} t + \frac{2}{5\pi} \cos \omega_{LO} t - \cdots$。因此，作为混频器时，由式 (3.5.5) 可以得到本振信号和输入小信号的和频 $\omega_{LO} + \omega_i$ 和差频 $\omega_{LO} - \omega_i$ 信号，通过滤波器即可获得所需的混频信号。这种简单的二极管混频电路，输出信号中的组合频率分量比较多，在实际应用中常使用二极管双平衡混频器，电路如下图所示。
+\begin{center}
+\includegraphics[width=0.5\textwidth]{fig1}
+\end{center}
+
+\subsection{吉尔伯特双平衡混频器}
+吉尔伯特双平衡混频器如下图所示，本振信号输入部分是两个差分管对，射频口为一个差分管对。通常，本振口送大信号，$Q_1$、$Q_2$、$Q_3$、$Q_4$ 组成开关控制电路。射频口送小信号，电路工作在线性放大区。它与单管或单平衡混频器相比的优点是：各个端口之间的隔离性能很好，线性范围比较大。
+\begin{center}
+\includegraphics[width=0.5\textwidth]{fig2}
+\end{center}
+
+\section{实验电路分析}
+实验电路的整体结构如图~3.5.3 所示，由上变频电路、带通滤波器、下变频电路组成。
+\begin{center}
+\includegraphics[width=0.8\textwidth]{fig3}
+\end{center}
+二极管双平衡混频器用作上变频混频器，如图~3.5.4 所示。混频器内部有四个相同的二极管构成环形乘法器，本振信号 LO（选用 $25\,\mathrm{MHz}$）由外部信号源提供，从 JP$_2$ 端输入，由传输线变压器转双端输入；中频信号 IF（选用 $10.7\,\mathrm{MHz}$）由外部信号源提供或由 2 号实验板的压控振荡器提供，从 JP$_4$ 端输入。混频后的射频信号从 JP$_3$ 端输出，经过跳线 J$_4$ 连接到带通滤波器的输入端 JP$_5$。
+
+滤波器选用由 LC 实现的带通滤波器，其中心频率为 $36\,\mathrm{MHz}$，带宽约 $8\,\mathrm{MHz}$。其作用是将上变频输出信号中的和频信号（$35.7\,\mathrm{MHz}$）滤出，从 JP$_6$ 输出。
+\begin{center}
+\includegraphics[width=0.8\textwidth]{fig4}
+\end{center}
+下变频电路为吉尔伯特双平衡混频结构，实验电路采用 MC1496 双平衡调制解调芯片，如图~3.5.5 所示。MC1496 芯片的内部由吉尔伯特单元电路构成。下变频电路的射频信号（$35.7\,\mathrm{MHz}$）由外部信号源提供，或通过跳线 J$_5$ 连接带通滤波器，从上变频电路的输出中得到。$25\,\mathrm{MHz}$ 的本振信号由外部信号源提供，从 JP$_2$ 端输入，混频输出信号经过 $10.7\,\mathrm{MHz}$ 的陶瓷滤波器滤波，在 JP$_8$ 端得到中频输出信号。
+\begin{center}
+\includegraphics[width=0.8\textwidth]{fig5}
+\end{center}
+\section{实验设备}
+\begin{tabular}{ll}
+	实验板 No04         & 1 块 \\
+	信号源              & 1 台 \\
+	双踪示波器          & 1 台 \\
+	频谱分析仪（含 TG） & 1 台 \\
+	万用表              & 1 台 \\
+\end{tabular}
+
+\section{实验过程与数据记录分析}
+\subsection{二极管双平衡混频器上变频实验}
+\subsubsection{混频器变频增益测量}
+JP端输入幅度为0dBm，频率为10.7MHz的正弦信号作为中频输入信号。设定频谱分析仪中心频率为35.7MHz，设定扫频带宽SPAN为50kHz，分辨率带宽RBW为1kHz
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{fig6}
+\end{center}
+从图中可以读出输出信号中和频分量的幅度为$-7.01dBm$，由此可以得到混频增益为$-7.01dBm$.改变输入的本振信号幅度，得到下表：
+\begin{table}[htbp]
+\centering
+\caption{本振信号幅度/混频增益增益测量数据}
+\label{tab:input_output_power}
+\begin{tabular}{|c|*{4}{c|}}
+\hline
+输入功率 (dBm)  & -10 & 0 & 10 & 15 \\
+\hline
+输出功率 (dBm)  & -20.96 & -11.09 & -7.01 & -6.60 \\
+\hline
+增益 (dB)      & -10.96 & -11.09 & -17.01 & -21.60 \\
+\hline
+\end{tabular}
+\end{table}
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{fig10}
+\end{center}
+输入的$0dBm$中频信号使用AM调制时，信号频谱如下，混频增益为$-17.79dBm$
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{fig11}
+\end{center}
+输入的$0dBm$中频信号使用FM调制时，信号频谱如下，混频增益为$-11.34dBm$
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{fig12}
+\end{center}
+\subsubsection{隔离性能测试}
+在混频输出端 JP$_3$，观察在本振频率点 25\,MHz、中频 10.7\,MHz 的信号分量大小.
+\begin{figure}[H]
+	\begin{minipage}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig13}
+		\end{minipage}
+	\qquad
+	\begin{minipage}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig14}
+		\end{minipage}
+\end{figure}
+在中频信号 10.7\,MHz处的信号分量大小为$-23.1dBm$,混频输出端对中频信号的隔离度为$10+23.1 = 33.1dB$;在本振 25\,MHz处的信号分量大小为$-44.45dBm$,混频输出端对本振信号的隔离度为$0+44.45 = 44.5dB$
+\subsubsection{带通滤波性能测试}
+保持以上输入信号不变，连接跳线 $J_4$，滤波器设为 LC 带通滤波器（将 $J_1$ 和 $J_2$ 的第 6 位跳线接通，$J_3$ 的 1-2 脚连通）；将频谱分析仪的中心频率设为 $25MHz$，扫宽设为 $40MHz$；频谱仪输入分别连接 $\text{JP}_3$ 和 $\text{JP}_6$
+滤波前的频谱：
+\begin{figure}[H]
+	\begin{minipage}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig15}
+			\caption{差频信号幅度}
+		\end{minipage}
+	\qquad
+	\begin{minipage}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig16}
+			\caption{和频信号幅度}
+		\end{minipage}
+\end{figure}
+滤波后的频谱：
+\begin{figure}[H]
+	\begin{minipage}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig17}
+			\caption{差频信号幅度}
+		\end{minipage}
+	\qquad
+	\begin{minipage}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig18}
+			\caption{和频信号幅度}
+		\end{minipage}
+\end{figure}
+
+\subsubsection{和频提取过程}
+\begin{itemize}
+\item 本振大信号 $v_{LO}(t) = V_{LO} \cos \omega_{LO} t$ 从中心抽头加入；
+\item 射频小信号 $v_i(t) = V_i \cos \omega_i t$ 从一侧输入；
+\item 输出负载 $R_L$ 接于另一侧，获取差动电流。
+\end{itemize}
+在本振正半周，$D_1, D_2$ 导通；负半周，$D_3, D_4$ 导通。因此，流过各二极管的电流可表示为：
+
+\begin{align}
+i_{D2} - i_{D1} &= \frac{-2v_i(t)}{2R_s + R_D} S_1(\omega_{LO} t) \\
+i_{D3} - i_{D4} &= \frac{-2v_i(t)}{2R_s + R_D} S_1(\omega_{LO} t + \pi)
+\end{align}
+
+其中，$S_1(\cdot)$ 为本振信号控制下的单向开关函数。
+
+\paragraph{输出电流表达式}~\\
+
+在整个本振周期内，流经输出负载的净电流为：
+
+\begin{equation}
+i = (i_{D3} - i_{D4}) - (i_{D2} - i_{D1}) = \frac{2v_i(t)}{2R_s + R_D} S_2(\omega_{LO} t)
+\tag{3.5.6}
+\end{equation}
+
+式中，$S_2(\omega_{LO} t)$ 为双向开关函数，其傅里叶级数展开为：
+
+\begin{equation}
+S_2(\omega_{LO} t) = \frac{4}{\pi} \cos \omega_{LO} t - \frac{4}{3\pi} \cos 3\omega_{LO} t + \frac{4}{5\pi} \cos 5\omega_{LO} t - \cdots
+\end{equation}
+
+\paragraph{和频分量的产生}~\\
+
+将输入信号 $v_i(t) = V_i \cos \omega_i t$ 代入式 (3.5.6)，得：
+
+\begin{align}
+i(t) &= \frac{2V_i \cos \omega_i t}{2R_s + R_D} \cdot \left( \frac{4}{\pi} \cos \omega_{LO} t - \frac{4}{3\pi} \cos 3\omega_{LO} t + \cdots \right) \\
+&= \underbrace{\frac{8V_i}{\pi(2R_s + R_D)} \cos \omega_i t \cos \omega_{LO} t}_{\text{主项}} + \text{高次谐波项}
+\end{align}
+
+利用三角恒等式 $\cos A \cos B = \frac{1}{2} [\cos(A+B) + \cos(A-B)]$，主项可展开为：
+
+\begin{equation}
+i_{\text{main}}(t) = \frac{4V_i}{\pi(2R_s + R_D)} \left[ \cos((\omega_{LO} + \omega_i)t) + \cos((\omega_{LO} - \omega_i)t) \right]
+\end{equation}
+
+由此可见，输出电流中包含：
+\begin{itemize}
+    \item 和频分量：$\omega_{LO} + \omega_i$
+    \item 差频分量：$\omega_{LO} - \omega_i$
+    \item 高次谐波组合：如 $3\omega_{LO} \pm \omega_i$ 等（幅度较小）
+\end{itemize}
+
+\subsection{吉尔伯特双平衡混频器下变频实验}
+\subsubsection{混频器变频增益测量}
+设定本振信号的幅度为 10\,dBm；设定射频信号的幅度为 -10\,dBm；设定频谱分析仪中心频率为 10.7\,MHz，扫描带宽 SPAN 为 50\,kHz，在 $\text{JP}_8$ 端用频谱分析仪测量混频器的中频输出。
+\begin{center}
+	\includegraphics[width = 0.8\textwidth]{fig19}
+\end{center}
+中频输出$-30.63dBm$，混频增益为$-30.63+10 = -20.63dB$
+\subsubsection{混频器1dB压缩点}
+在本振信号幅度为 10\,dBm 的条件下，采用信号源作为射频输入，改变输入信号的幅度，测量输出信号的幅度，数据如下表所示。
+根据数据画出图像后即可得到1dB压缩点
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|*{10}{c|}}
+        \hline
+        输入功率 (dBm) & -25 & -24 & -23 & -22 & -21 & -20 & -19 & -18 & -17 & -16 \\
+        \hline
+        输出功率 (dBm) & -41.56 & -40.56 & -39.72 & -38.86 & -37.88 & -37.04 & -36.22 & -35.52 & -34.55 & -33.82 \\
+        \hline
+        增益 (dB)      & 16.44 & 16.44 & 16.28 & 16.14 & 16.12 & 15.96 & 15.78 & 15.48 & 15.45 & 15.18 \\
+        \hline
+        输入功率 (dBm) & -15 & -14 & -13 & -12 & -11 & -10 &  -9 &  -8 &  -7 &  -6 \\
+        \hline
+        输出功率 (dBm) & -33.13 & -32.52 & -31.94 & -31.43 & -31.01 & -30.62 & -30.33 & -30.09 & -29.91 & -29.75 \\
+        \hline
+        增益 (dB)      & 15.13 & 15.12 & 15.06 & 14.57 & 13.99 & 13.38 & 12.67 & 11.91 & 11.09 & 10.25 \\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{center}
+	\includegraphics[width = \textwidth]{fig20}
+\end{center}
+
+\section{思考题}
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+
+    \item \textbf{混频器的主要性能指标有哪些？}
+
+    混频器是射频系统中的关键非线性器件，其主要性能指标包括：
+
+    \begin{itemize}
+        \item \textbf{变频增益（Conversion Gain）}：输出中频信号功率与输入射频信号功率之比（单位：dB），反映信号放大能力。
+        \item \textbf{噪声系数（Noise Figure, NF）}：衡量混频器引入额外噪声的程度，越低越好。
+        \item \textbf{1dB 压缩点（$P_{1\mathrm{dB}}$）}：增益比小信号线性增益下降 1 dB 时对应的输入功率，表征线性动态范围上限。
+        \item \textbf{三阶互调截点（IP3）}：衡量非线性失真程度，越高表示抗干扰能力越强。
+        \item \textbf{端口隔离度（Isolation）}：如 LO-RF、LO-IF、RF-IF 之间的隔离度，防止本振泄漏和信号串扰。
+        \item \textbf{带宽（Bandwidth）}：支持的工作频率范围，包括 RF 带宽和 IF 带宽。
+        \item \textbf{本振驱动功率（LO Drive Level）}：使混频器正常工作所需的本振功率，影响功耗和设计复杂度。
+    \end{itemize}
+
+    \item \textbf{吉尔伯特双平衡混频器与二极管双平衡混频器相比，优势有哪些？}
+
+    吉尔伯特单元（Gilbert Cell）是一种基于晶体管的有源混频器，相较于无源二极管双平衡混频器，具有以下显著优势：
+
+    \begin{itemize}
+        \item \textbf{提供变频增益}：吉尔伯特混频器为有源结构，可实现正增益（通常 5–20 dB），而二极管混频器通常为损耗型（增益 < 0 dB）。
+        \item \textbf{更高的端口隔离度}：由于对称差分结构和电流开关机制，LO-RF、LO-IF 隔离度更高，减少本振泄漏。
+        \item \textbf{更好的线性度}：通过偏置控制和负反馈技术，可优化 IP3 和 $P_{1\mathrm{dB}}$，适用于高动态范围系统。
+        \item \textbf{易于集成}：采用 CMOS 或 BiCMOS 工艺，便于与基带电路单片集成，适合现代通信芯片设计。
+        \item \textbf{可调增益}：可通过调节尾电流或负载电阻实现增益控制，适应不同应用场景。
+    \end{itemize}
+
+    \item \textbf{混频器变频增益主要受哪些因素的影响？}
+
+    变频增益是混频器核心参数，其大小受多种因素影响：
+
+    \begin{itemize}
+        \item \textbf{本振功率（LO Power）}：对于无源混频器（如二极管），增益随 LO 功率增加而提升直至饱和；对于有源混频器（如 Gilbert），需足够 LO 功率驱动开关管完全导通/截止。
+        \item \textbf{晶体管跨导（$g_m$）}：在有源混频器中，增益正比于输入级晶体管的跨导，受偏置电流和器件尺寸影响。
+        \item \textbf{负载阻抗}：输出端负载电阻或 LC 谐振回路 Q 值直接影响电压增益。
+        \item \textbf{频率响应}：随着工作频率升高，寄生电容（如 $C_{gs}$、$C_{gd}$）导致增益滚降。
+        \item \textbf{温度与工艺偏差}：半导体参数随温度变化，制造过程中的阈值电压、迁移率波动也会影响增益稳定性。
+        \item \textbf{输入匹配网络}：若 RF 输入未良好匹配至 50 Ω，部分信号反射会导致有效增益降低。
+    \end{itemize}
+\end{enumerate}
+\end{document}

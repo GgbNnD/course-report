@@ -1,0 +1,292 @@
+%!TEX program = xelatex
+
+\documentclass[12pt]{article}
+% \usepackage[utf8]{inputenc}
+\usepackage[UTF8]{ctex}
+\usepackage{indentfirst}
+\usepackage{lmodern}% http://ctan.org/pkg/lm
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{amsmath}%数学
+\usepackage{amsthm}%数学定理、证明
+\usepackage{graphicx}%graphicx基于graphics,更方便
+% \usepackage{subfig}%图像
+\usepackage{subfigure}
+\usepackage{booktabs}%表格
+\usepackage{tabularx}%表格
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{relsize}
+\usepackage[usenames]{color}   
+\usepackage{fontspec}
+%更改页边距
+\usepackage{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+%并列图片
+%\begin{figure}[H]
+%	\begin{minipage}[t]{0.5\textwidth}
+	%		\centering
+	%		\includegraphics[width=0.8\textwidth]{img1}
+	%		\caption{img1\label{fig:1}}
+	%	\end{minipage}
+%	\qquad
+%	\begin{minipage}[t]{0.5\textwidth}
+	%		\centering
+	%		\includegraphics[width=0.8\textwidth]{img2}
+	%		\caption{img2\label{fig:2}}
+	%	\end{minipage}
+%\end{figure}
+
+%设置enumerate环境缩进两个字符
+\usepackage{enumitem}
+\setlist[enumerate]{listparindent=\parindent}
+
+%更改enumerate编号样式
+%\renewcommand{\labelenumi}{(\theenumi)}
+%{\labelenumi}标明你要修改的那一级标签，如果是第2层，就是\labelenumii，以此类推；
+%{(\theenumi)}用于表达你想要改成的标签式样，我是在原式样外面加括号，所以在\theenumi两边加了括号。其他参数的使用方法类似。
+
+%\usepackage{colortbl}%表格颜色
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage[rightcaption]{sidecap}
+\usepackage{hyperref}
+\usepackage{float}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black
+}%解决目录红框问题
+\lstset{
+ columns=fixed,       
+ numbers=left,                                        % 在左侧显示行号
+ numberstyle=\tiny\color{gray},                       % 设定行号格式
+ frame=none,                                          % 不显示背景边框
+ backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+ showstringspaces=false,                              % 不显示字符串中的空格
+ breaklines=true,                                     % 对过长的代码自动换行
+ language=python,                                     % 设置语言
+}
+\newcommand{\myd}{\;\mathrm{d}}%自定义积分变量命令
+% \renewcommand{\listtablename}{表格}%改变listoftable的名字
+\renewcommand{\arraystretch}{1.8}%The height of each row, relative to its default height
+% \setmonofont{Consolas}
+\renewcommand\refname{参考网站}
+% \setlength{\tabcolsep}{18pt}%The space between the text and the left/right border of its containing cell
+% \setlength{\arrayrulewidth}{0.4mm}%sets the thickness of the borders of the table
+
+\setlength{\parindent}{2em}%控制首行缩进
+\addtolength{\parskip}{3pt}%\parskip 控制段落(paragraph)距离
+%\singlespacing%单倍行距
+%\doublespacing%双倍行距
+%\setstretch{1.25}%设置行距为1.25
+\onehalfspacing %1.5倍行距
+%\begin{doublespacing} 行距环境 \end{doublespacing}
+\graphicspath{{./figures/}} % 指定图片所在文件夹
+%\newtheorem{definition}[定义]{section}
+%定制环境: {环境名}[编号延续]{显示名}[编号层次]
+\newcommand{\daima}[1]{{\ttfamily{#1}}}
+
+% 列表行间距
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=-4pt}
+\setlist[enumerate]{itemsep=-4pt}
+
+% 表格宽度
+\newcolumntype{H}{>{\centering\arraybackslash}p{2cm}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{2.4cm}}
+
+
+\usepackage{algorithm2e}
+\usepackage{amssymb}
+\begin{document}
+\begin{titlepage}
+	\vspace*{-2.5cm}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\linewidth]{zjdx}
+	\end{figure}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.3\linewidth]{QSY}
+	\end{figure}
+	\vspace{-0.2cm}
+	\begin{center}
+		\Huge{\textbf{宽带低噪声放大器及自动增益控制}}\\
+	\end{center}
+	\vspace*{0.8cm}
+	\begin{center}
+		\larger[2]{
+			\begin{tabular}{cc}
+				姓\hspace{12pt}名 & \underline{\makebox[220pt]{\kaishu 黄鹤翔}}             \\
+				学\hspace{12pt}号 & \underline{\makebox[220pt]{3230106231}}                 \\
+				院\hspace{12pt}系 & \underline{\makebox[220pt]{\kaishu 信息与电子工程学院}} \\
+				指导老师          & \underline{\makebox[220pt]{\kaishu 金向东/龚淑君}}             \\
+			\end{tabular}
+		}
+	\end{center}
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}%重新开始标号,阿拉伯数字形式S
+
+\section{实验目的}
+
+\begin{enumerate}
+	\item 掌握自动增益控制放大器的实现方法和工作原理。
+	\item 了解电路主要性能指标。
+	\item  对放大器的增益、噪声系数、1dB压缩点进行测量和分析。
+\end{enumerate}
+
+\section{实验原理}
+
+低噪声放大器（LNA）位于射频接收机的前端，这就要求它的噪声越小越好，另外，为了
+抑制接收机后面各级电路噪声对系统的影响，低噪声放大器需要具有一定的增益。
+
+由于受发射机功率大小、信号传输路径等的影响，接收信号的强弱是变化的，因此，放
+大器的增益应该是可调节的，如果由人工控制增益，实现起来不方便，也是很困难的。解决
+方法是采用自动增益控制电路（AGC），当放大器输入信号比较弱的时候，增益变大；而当输
+入信号比较强的时候，增益减小，使放大器的输出保持恒定
+\subsection{低噪声放大器的主要性能指标}
+\begin{enumerate}
+	\item 增益
+	\item 噪声系数
+	\item 1dB增益压缩点
+\end{enumerate}
+
+\subsection{AGC主要性能指标}
+\begin{enumerate}
+	\item 动态范围
+	\item 响应时间
+\end{enumerate}
+
+\subsection{AD603放大器芯片介绍}
+AD603是用于射频及中频自动增益控制（AGC）系统中的低噪声电压控制放大器。在90MHz
+带宽范围内提供-11dB到31dB的增益，9MHz带宽范围内提供9dB到51dB的增益。AD603由增
+益控制接口，无源输入衰减器和固定增益放大器三部分组成，功能框图如下图所示。
+\begin{center}
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig1.png}
+\end{center}
+
+\subsection{实验电路分析}
+\begin{center}
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig2.png} % 请替换为实际图片路径
+\end{center}
+\par
+实验电路如图3.2.3所示。电路中两个AD603放大器级联，由电容$C_9$耦合。采用顺序增益控制方式，两放大器GNEG管脚间的电压差为1V左右，由电阻$R_{13}$、$R_{14}$、$R_{15}$分压得到。两放大器的增益分别由$R_7$、$R_8$确定，本实验电路中取值为2.5k$\Omega$，则单级最大增益约为42dB，因此电路的最大增益可达84dB。通过选取合适的$R_7$、$R_8$，增益控制范围可在20dB内变动。
+
+电路中$Q_2$和$R_6$构成一个检波器，用于检测放大器输出信号幅度的变化；$Q_1$和外围电阻构成一个简单的恒流源电路，其集电极电流保持基本不变；流入电容$C_4$的电流是$Q_1$与$Q_2$集电极电流的差值，$Q_2$集电极的电流随着输出信号幅度的增加而增加。自动增益控制电压$V_{AGC}$是这个差值的时间积分，因此它随输出信号幅度的变化而变化，从而达到自动调整放大器增益的目的。电路稳定时，$Q_2$检波电流的平均值要与$Q_1$的电流平衡。如果放大器输出幅度太小不能满足这个条件，$V_{AGC}$会增加，使得放大器增益增加，输出幅度变大，直到$Q_2$与$Q_1$的平均电流达到平衡。
+
+开关$SW_4$及外围的电阻网络构成一可变衰减器。$SW_4$控制对输入信号的衰减量，设为“1000”（即接通第一路开关），衰减0dB；设为“0100”，衰减20dB；设为“0010”，衰减40dB；设为“0001”，衰减60dB；设为“0000”，衰减80dB。
+
+开关$SW_2$用以控制AGC环路。当开关$SW_2$处于断开（Open）状态时，整个放大电路处于开环状态，增益由可变电阻$WR_1$控制。当开关$SW_2$处于闭合（Close）状态时，整个放大电路处于闭环状态，可以实现自动增益控制功能。
+\section{实验设备}
+\begin{tabular}{ll}
+	实验板 No01         & 1 块 \\
+	信号源              & 1 台 \\
+	双踪示波器          & 1 台 \\
+	频谱分析仪（含 TG） & 1 台 \\
+	万用表              & 1 台 \\
+\end{tabular}
+
+\section{实验过程}
+\subsection{开环放大器测量}
+\subsubsection{最大开环增益测量}
+高频信号源的输出连接到实验板的 $JP_2$；设定高频信号源产生幅值为 -40 dBm，频率为 10.7 MHz 的正弦信号；设定频谱分析仪的中心频率为 10.7 MHz，扫描宽度为 100 kHz，调节可变电阻 WR$_1$，使输出信号最大且不失真，读取输出信号峰值，计算最大增益。
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{fig3.jpg}
+\end{center}
+由图中可得，输出信号峰值为$-5.50dBm$，最大增益为$-5.50+40+40 = 74.5dB$
+
+\subsubsection{噪声系数NF的测量}
+将电路板输入端与高频信号源断开，接 $50\,\Omega$ 电阻；设定可变衰减器衰减为 $0\,\mathrm{dB}$（将 $\mathrm{SW}_4$ 设为“1000”）；设定频谱分析仪扫描带宽为 $100\,\mathrm{kHz}$，分辨率带宽为 $100\,\mathrm{Hz}$，参考电平为 $-40\,\mathrm{dBm}$。
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{fig4.jpg}
+\end{center}
+读图可知，放大器输出噪声功率谱密度为$-70.24dBm/RBW$,噪声系数为
+$$
+NF \, (\mathrm{dB}) = N_{\mathrm{out}} \, (\mathrm{dBm}/\mathrm{RBW}) - 10 \log(\mathrm{RBW}) + 174 \, \mathrm{dBm}/\mathrm{Hz} - G_a \, (\mathrm{dB})
+= -70.24 - 10 \log(100) + 174 - 74.5 = 9.26
+$$
+\subsubsection{1dB增益压缩点的测量}
+设定可变衰减器衰减为 $40\,\mathrm{dB}$（将 $\mathrm{SW}_4$ 设为“0010”）；在 $\mathrm{JP}_2$ 端由高频信号源输入大小为 $0\,\mathrm{dBm}$、频率为 $10.7\,\mathrm{MHz}$ 的正弦信号；调节可变电阻 $\mathrm{WR}_1$，使 $\mathrm{JP}_3$ 端输出信号大小为 $0\,\mathrm{dBm}$，则此时放大器的增益为 $40\,\mathrm{dB}$。
+
+\begin{table}[htbp]
+\centering
+\caption{输入/输出功率与增益测量数据}
+\label{tab:input_output_power}
+\begin{tabular}{|c|*{10}{c|}}
+\hline
+输入功率 (dBm) & -40 & -39 & -38 & -37 & -36 & -35 & -34 & -33 & -32 & -31 \\
+\hline
+输出功率 (dBm) & -37.19 & -36.08 & -35.31 & -34.15 & -33.40 & -32.25 & -31.22 & -30.16 & -29.26 & -28.27 \\
+\hline
+增益 (dB)      & 42.81 & 42.92 & 42.69 & 42.85 & 42.60 & 42.75 & 42.78 & 42.84 & 42.74 & 42.73 \\
+\hline
+输入功率 (dBm) & -30 & -29 & -28 & -27 & -26 & -25 & -24 & -23 & -22 & -21 \\
+\hline
+输出功率 (dBm) & -27.46 & -26.17 & -25.23 & -24.40 & -23.38 & -22.33 & -21.29 & -20.32 & -19.22 & -18.40 \\
+\hline
+增益 (dB)      & 42.54 & 42.83 & 42.77 & 42.60 & 42.62 & 42.67 & 42.71 & 42.68 & 42.78 & 42.60 \\
+\hline
+\end{tabular}
+\end{table}
+曲线拟合后如下图所示，线性增益为$37.2dB$,1dB增益压缩点处输入功率$IP_{1dB}$为$-21.9dBm$,输出功率$OP_{1dB}$为$-19.0dBm$。
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{fig5.png}
+\end{center}
+
+\subsection{AGC放大器特性测量}
+将开关 $\mathrm{SW}_2$ 置于闭合状态，则放大器处于自动增益控制状态。
+
+测量时，将输入信号衰减器设定为衰减 $20\,\mathrm{dB}$；在 $\mathrm{JP}_2$ 端由高频信号源输入大小为 $-50\,\mathrm{dBm}$、频率为 $10.7\,\mathrm{MHz}$ 的正弦信号，以 $10\,\mathrm{dBm}$ 为步进增加输入信号的功率，直到 $20\,\mathrm{dBm}$。用频谱分析仪和示波器观察输出信号的大小，当输出信号功率不随输入信号功率的增加而增加时，放大器自动增益控制开始发挥作用。记录输入信号功率与输出信号功率如下表所示。
+
+\begin{table}[htbp]
+\centering
+\caption{AGC 性能测试表}
+\label{tab:agc_performance}
+\begin{tabular}{|c|*{9}{c|}}
+\hline
+输入功率 (dBm) & -50 & -40 & -30 & -20 & -10 & 0 & 10 & 20 \\
+\hline
+输出功率 (dBm) & 0.48 & 3.32 & 3.50 & 3.55 & 3.76 & 3.73 & 3.94 & 3.97 \\
+\hline
+增益 (dB)      & 70.48 & 63.32 & 53.50 & 43.55 & 33.76 & 23.73 & 13.94 & 3.97 \\
+\hline
+\end{tabular}
+\end{table}
+
+AGC 放大器的最大功率增益 $G_{\max} = 70.48dB$，最小功率增益 $G_{\min} = 13.94dB$，以及动态增益范围 $M_{AGC}$。
+
+从数据中可以看出，当输入信号小于一定幅度时，
+AGC放大器增益达到最大。随着输入信号的加大，放大器的增益逐渐减小，输出信号幅度保持
+基本不变。
+
+数据中输入功率为 $-50 dBm$时，输出功率明显小于其他输入功率时的输出功率，可能是由于达到了放大器的最大增益点。输入功率从
+$-40 dBm$到 $20 dBm$时，输出功率基本保持在 $3.3 dBm$到 $4.0 dBm$之间，说明 AGC 功能正常工作，能够有效地控制输出信号的幅度。
+
+\section{思考题}
+\paragraph{低噪声放大器的主要性能指标有哪些？}~\\
+低噪声放大器的主要性能指标包括：
+\begin{itemize}
+    \item \textbf{增益：} 需适中，过大容易使后级过载失真，过小则无法抑制后级噪声。
+    \item \textbf{噪声系数（NF）：} 表征放大器对信噪比的恶化程度，是低噪声放大器最关键的指标。
+    \item \textbf{非线性（1dB增益压缩点）：} 衡量放大器的线性工作范围。
+\end{itemize}
+\paragraph{结合实验电路，简述自动增益控制放大器的电路工作原理。}~\\
+自动增益控制（AGC）放大器是一个闭环负反馈控制系统。在实验电路中，输出信号经过检波器提取出反映输出信号幅度的直流成分，该检波电流与预设的恒流源电流进行比较。两者的差值对电容充电（或放电）产生控制电压$V_{AGC}$。当输入信号变强导致输出信号增大时，检波电流增加，使$V_{AGC}$变化，从而控制AD603降低增益；反之，当输入信号变弱时，$V_{AGC}$控制AD603提高增益。最终达到动态平衡，使得放大器的输出幅度保持基本恒定。
+\paragraph{实验电路中，为何要在放大器输入端设置可变衰减器？}~\\
+在放大器输入端设置可变衰减器主要有以下作用：
+\begin{enumerate}
+	\item 模拟实际通信系统中接收信号强度的巨大变化范围，便于测试AGC电路的动态控制范围；
+	\item 防止在进行大信号测试或最大增益测试时，输入信号过强导致放大器饱和失真，确保输入信号在放大器的线性或可控范围内；
+\end{enumerate}
+\end{document}

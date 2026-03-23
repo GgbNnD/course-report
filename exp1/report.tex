@@ -1,0 +1,393 @@
+%!TEX program = xelatex
+
+\documentclass[12pt]{article}
+% \usepackage[utf8]{inputenc}
+\usepackage[UTF8]{ctex}
+\usepackage{indentfirst}
+\usepackage{lmodern}% http://ctan.org/pkg/lm
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{amsmath}%数学
+\usepackage{amsthm}%数学定理、证明
+\usepackage{graphicx}%graphicx基于graphics,更方便
+% \usepackage{subfig}%图像
+\usepackage{subfigure}
+\usepackage{booktabs}%表格
+\usepackage{tabularx}%表格
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{relsize}
+\usepackage[usenames]{color}   
+\usepackage{fontspec}
+%更改页边距
+\usepackage{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+%并列图片
+%\begin{figure}[H]
+%	\begin{minipage}[t]{0.5\textwidth}
+	%		\centering
+	%		\includegraphics[width=0.8\textwidth]{img1}
+	%		\caption{img1\label{fig:1}}
+	%	\end{minipage}
+%	\qquad
+%	\begin{minipage}[t]{0.5\textwidth}
+	%		\centering
+	%		\includegraphics[width=0.8\textwidth]{img2}
+	%		\caption{img2\label{fig:2}}
+	%	\end{minipage}
+%\end{figure}
+
+%设置enumerate环境缩进两个字符
+\usepackage{enumitem}
+\setlist[enumerate]{listparindent=\parindent}
+
+%更改enumerate编号样式
+%\renewcommand{\labelenumi}{(\theenumi)}
+%{\labelenumi}标明你要修改的那一级标签，如果是第2层，就是\labelenumii，以此类推；
+%{(\theenumi)}用于表达你想要改成的标签式样，我是在原式样外面加括号，所以在\theenumi两边加了括号。其他参数的使用方法类似。
+
+%\usepackage{colortbl}%表格颜色
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage[rightcaption]{sidecap}
+\usepackage{hyperref}
+\usepackage{float}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black
+}%解决目录红框问题
+\lstset{
+ columns=fixed,       
+ numbers=left,                                        % 在左侧显示行号
+ numberstyle=\tiny\color{gray},                       % 设定行号格式
+ frame=none,                                          % 不显示背景边框
+ backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+ showstringspaces=false,                              % 不显示字符串中的空格
+ breaklines=true,                                     % 对过长的代码自动换行
+ language=python,                                     % 设置语言
+}
+\newcommand{\myd}{\;\mathrm{d}}%自定义积分变量命令
+% \renewcommand{\listtablename}{表格}%改变listoftable的名字
+\renewcommand{\arraystretch}{1.8}%The height of each row, relative to its default height
+% \setmonofont{Consolas}
+\renewcommand\refname{参考网站}
+% \setlength{\tabcolsep}{18pt}%The space between the text and the left/right border of its containing cell
+% \setlength{\arrayrulewidth}{0.4mm}%sets the thickness of the borders of the table
+
+\setlength{\parindent}{2em}%控制首行缩进
+\addtolength{\parskip}{3pt}%\parskip 控制段落(paragraph)距离
+%\singlespacing%单倍行距
+%\doublespacing%双倍行距
+%\setstretch{1.25}%设置行距为1.25
+\onehalfspacing %1.5倍行距
+%\begin{doublespacing} 行距环境 \end{doublespacing}
+\graphicspath{{./figures/}} % 指定图片所在文件夹
+%\newtheorem{definition}[定义]{section}
+%定制环境: {环境名}[编号延续]{显示名}[编号层次]
+\newcommand{\daima}[1]{{\ttfamily{#1}}}
+
+% 列表行间距
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=-4pt}
+\setlist[enumerate]{itemsep=-4pt}
+
+% 表格宽度
+\newcolumntype{H}{>{\centering\arraybackslash}p{2cm}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{2.4cm}}
+
+
+\usepackage{algorithm2e}
+\usepackage{amssymb}
+\begin{document}
+\begin{titlepage}
+	\vspace*{-2.5cm}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\linewidth]{zjdx}
+	\end{figure}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.3\linewidth]{QSY}
+	\end{figure}
+	\vspace{-0.2cm}
+	\begin{center}
+		\Huge{\textbf{小信号调谐放大器}}\\
+	\end{center}
+	\vspace*{0.8cm}
+	\begin{center}
+		\larger[2]{
+			\begin{tabular}{cc}
+				姓\hspace{12pt}名 & \underline{\makebox[220pt]{\kaishu 黄鹤翔}}             \\
+				学\hspace{12pt}号 & \underline{\makebox[220pt]{3230106231}}                 \\
+				院\hspace{12pt}系 & \underline{\makebox[220pt]{\kaishu 信息与电子工程学院}} \\
+				指导老师          & \underline{\makebox[220pt]{\kaishu 金向东  龚淑君}}             \\
+			\end{tabular}
+		}
+	\end{center}
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}%重新开始标号,阿拉伯数字形式S
+
+\section{实验目的}
+
+\begin{enumerate}
+	\item 掌握小信号调谐放大器的工作原理。
+	\item 掌握频谱分析仪的基本使用方法。
+	\item 掌握调谐放大器电压增益、通频带及选择性的定义、测试及计算方法。
+\end{enumerate}
+
+\section{实验原理}
+
+小信号调谐放大器广泛用作高频和中频放大器，特别是用在通信接收端的前端电路，其主要目的就是实现对高频小信号的放大。谐振放大器的负载是采用谐振回路，具有放大、滤波和选频的作用。作为负载的谐振回路，通常采用LC组成的并联谐振电路。由于LC并联谐振回路的阻抗是随着频率变化而变化，并联谐振回路在谐振频率处呈现纯阻，并达到最大值。即放大器在回路谐振频率上将具有最大的电压增益。若偏离谐振频率，增益将减小。
+
+小信号是相对而言的，信号电平处在放大器的线性范围内，就可以认为是小信号。
+
+\subsection{小信号调谐放大器的主要性能指标}
+
+小信号调谐放大器的幅频特性如图3.1.1所示。
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{fig3_1_1.png} % 请替换为实际图片路径
+\end{figure}
+
+衡量小信号调谐放大器的主要性能指标包括以下几个方面：
+
+\begin{enumerate}
+	\item 谐振频率（\(f_0\)）：放大器调谐回路谐振时所对应的频率 \(f_0\) 称为放大器的谐振频率。
+	\item 谐振电压增益（\(A_{V0}\)）：放大器处在谐振频率时，所对应的电压放大倍数 \(A_{V0}\) 称为调谐放大器的谐振电压增益。其表达式为：
+	      \[
+		      A_{V0} = \frac{V_o}{V_i}, \quad \text{或} \quad A_{V0} = 20\log\left(\frac{V_o}{V_i}\right) \quad \text{(dB)}
+	      \]
+	      也可以用功率增益表示：
+	      \[
+		      A_{P0} = \frac{P_o}{P_i}, \quad \text{或} \quad A_{P0} = 10\log\left(\frac{P_o}{P_i}\right) \quad \text{(dB)}
+	      \]
+	\item 通频带（\(BW_{3dB}\)）：电压增益下降到谐振电压增益的0.707倍（-3dB）时所对应的上下限频率之差称为放大器的通频带带宽 \(BW\)，表达式为：
+	      \[
+		      BW = f_H - f_L = 2\Delta f_{0.7} = \frac{f_0}{Q_L}
+	      \]
+	      式中 \(Q_L\) 为谐振回路的有载品质因数。
+	\item 增益带宽积（\(A_{V0} \cdot BW_{3dB}\)）：通常可以认为是一个常数，放大器的总通频带宽度随着放大级数的增加而变窄，增益与带宽是一对矛盾。
+	\item 选择性：定义矩形系数 \(K_{V0.1}\) 为电压增益下降到谐振时电压增益的0.1倍（-20dB）时对应的带宽与3dB带宽之比：
+	      \[
+		      K_{v0.1} = \frac{BW_{20dB}}{BW_{3dB}}
+	      \]
+	      矩形系数越接近1，选择性越好。
+\end{enumerate}
+
+\subsection{单调谐放大器}
+
+图3.1.2是典型的单调谐回路小信号放大器。其交流等效电路及y参数等效电路如图3.1.3（b）、（c）所示。
+\begin{center}
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig3_1_23.png} % 请替换为实际图片路径
+\end{center}
+电压增益表达式为：
+\[
+	\dot{A}_V = \frac{-p_1 p_2 y_{fe}}{g_{\Sigma} + j\omega C_{\Sigma} + \frac{1}{j\omega L}} \approx \frac{-p_1 p_2 y_{fe}}{g_{\Sigma}\left[1 + j\frac{2Q_L \Delta f}{f_0}\right]}
+\]
+其中：
+\[
+	f_0 = \frac{1}{2\pi\sqrt{LC_{\Sigma}}}, \quad Q_L = \frac{\omega_0 C_{\Sigma}}{g_{\Sigma}}, \quad BW_{3dB} = \frac{f_0}{Q_L}
+\]
+进一步可得：
+\[
+	A_{V0} \cdot BW = \frac{-p_1 p_2 y_{fe}}{2\pi C_{\Sigma}}
+\]
+即增益带宽积为常数。
+
+单调谐放大器的矩形系数为：
+\[
+	K_{V0.1} = \frac{BW_{20dB}}{BW_{3dB}} = \sqrt{10^2 - 1} \approx 9.95
+\]
+选择性较差。
+
+\subsection{调谐放大器的级联与双调谐放大器}
+
+多级级联时，总增益为各级增益乘积，总通频带为单级通频带的 \(\sqrt{\frac{1}{2^n} - 1}\) 倍。双调谐放大器具有频带宽、选择性好的优点。
+
+双调谐放大器在临界耦合时的通频带为：
+\[
+	BW = 2\Delta f_{0.7} = \frac{\sqrt{2} f_0}{Q_L}
+\]
+
+\subsection{实验电路分析}
+\begin{center}
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig3_1_4.png} % 请替换为实际图片路径
+\end{center}
+\par
+实验电路如图 3.1.4 所示。该电路由晶体管 \( Q_3 \)、选频回路二部分组成。本实验中谐振频率接近 \( 10.7\,\mathrm{MHz} \)，调整 \( T_1 \) 的电感量可改变谐振频率。作为双调谐放大器，\( T_1 \)、\( T_2 \) 需要同时进行调整。基极偏置电阻 \( WR_2 \)、\( R_{17} \)、\( R_{18} \) 和射极电阻 \( R_{19} \) 决定晶体管的静态工作点。调节可变电阻 \( WR_2 \) 改变基极偏置电阻将改变晶体管的静态工作点，从而可以改变放大器的增益。
+
+通过开关 \( SW_3 \) 的切换，可以改变电路形式或选择不同耦合电容。当 \( SW_3 \) 两位拨码开关设成 “00”，即都设为 “OFF” 时，电路就成为单调谐放大器，信号从 \( JP_5 \) 输出。当 \( SW_3 \) 改成其它状态时，电路为双调谐放大器，切换不同的耦合电容从而改变耦合系数，进而影响电路的选频特性。
+
+\section{实验设备}
+\begin{tabular}{ll}
+	实验板 No01         & 1 块 \\
+	信号源              & 1 台 \\
+	双踪示波器          & 1 台 \\
+	频谱分析仪（含 TG） & 1 台 \\
+	万用表              & 1 台 \\
+\end{tabular}
+
+\section{实验过程与数据记录}
+\subsection{单调谐小信号放大器实验}
+\subsubsection{测试电路搭建}
+按图 3.1.5 所示，连接实验板及测试设备，实验板的 \( \mathrm{SW}_3 \) 设为 “00” 状态，频谱分析仪的跟踪源输出连接实验板输入接口 \( \mathrm{JP}_4 \)，频谱分析仪的射频输入端连接实验板输出接口 \( \mathrm{JP}_5 \)，并打开电源。
+\begin{center}
+	\includegraphics[width = 0.8\textwidth]{fig3_1_5.png}
+\end{center}
+\subsubsection{晶体管的静态工作点调整}
+在不加输入信号时用万用表（直流电压测量档）测量 \( \mathrm{TP}_{10} \) 对地电压（即电阻 \( \mathrm{R}_{19} \) 两端的电压），调整可调电阻 \( \mathrm{WR}_2 \)，使 \( V_{\mathrm{EQ}} = 1.5\,\mathrm{V} \)\par
+\begin{center}
+	\includegraphics[width = 0.8\textwidth,angle = 90]{fig1.jpg}
+\end{center}
+计算出此时的 \( I_{\mathrm{EQ}} = V_{\mathrm{EQ}} / \mathrm{R}_{19} = 3.19mA\)。
+\subsubsection{频谱分析仪设置}
+复位频谱分析仪：【Pereset】；
+
+设定频谱分析仪中心频率为 \( 10.7\,\mathrm{MHz} \)：【FREQ】【10.7】【MHz】；
+
+设定扫描宽度为 \( 20\,\mathrm{MHz} \)：【SPAN】【20】【MHz】；
+
+设定参考电平为 \( 20\,\mathrm{dBm} \)：【AMPT】【参考电平】【20】【dBm】；
+
+进入跟踪源 TG（Tracking Generator）设置：【Source】；
+
+设定输出功率为 \( -20\,\mathrm{dBm} \)：【信号幅度】【-20】【dBm】；
+
+打开跟踪源：【跟踪源】。
+
+通过上述设定后，屏幕中显示处小信号调谐放大器的传输特性曲线
+\begin{center}
+	\includegraphics[width = 0.8\textwidth]{fig2.jpg}
+\end{center}
+\subsubsection{谐振频率测试}
+谐振频率测试：【Peak】；读取光标的频率值即为谐振频率。
+
+另一种频率计测量方式：【Marker Fctn】【频率计数】，右上角显示的为谐振频率。
+
+\begin{center}
+	\includegraphics[width = 0.8\textwidth]{fig3.jpg}
+\end{center}
+通过图像中可以看出谐振频率 \( f_0 \approx 10.7\,\mathrm{MHz} \)
+\subsubsection{谐振增益测试}
+与以上步骤一致，设定频谱分析仪。按【Peak】，读取光标位置的功率值记为 \( P_o \approx 3.04\,\mathrm{dBm}\)，而此时的输入功率为跟踪源的输出功率，记为 \( P_i \approx -20\,\mathrm{dBm}\)，功率增益即为：\( G = P_o - P_i \approx 23.04\,\mathrm{dB}\)。
+\subsubsection{通频带测试}
+按【Peak】，将光标定标到峰值位置；按【Marker】【差值】，将差值光标移动到-3dB位置；再按【差值】，将参考光标移动到另一边的-3dB位置。此时读取到的差值光标频率值，即为3dB通频带，记为 \( BW_{3dB} \)
+从图中看出 \( BW_{3dB} \approx 1.567\,\mathrm{MHz} \)
+\begin{center}
+	\includegraphics[width = 0.8\textwidth]{fig4.jpg}
+\end{center}
+\subsubsection{选择性测试}
+采用频谱仪的带宽测量功能，按【Marker Fctn】【N dB带宽】【-20】【dB】，屏幕显示的就是20dB带宽值。
+
+从图中可以看出\( BW_{20dB} \approx 15.767\,\mathrm{MHz}\)。则 \( K_{v0.1} = BW_{20dB} / BW_{3dB} \approx 10.062\)，接近理论上单调谐放大器的矩形系数9.95，选择性不是太理想。
+\begin{center}
+	\includegraphics[width = 0.8\textwidth]{fig5.jpg}
+\end{center}
+\subsubsection{静态工作点对谐振放大器增益和带宽的影响}
+晶体管在不同的工作电流下，放大倍数也有所不同。因此，静态工作点也影响到调谐放大器的谐振增益和带宽。
+
+在输入为-20dBm不变的条件下，将晶体管的工作电流 \( I_C \) 从1mA调整到5mA，测量其谐振增益和带宽如下表所示：\par
+\begin{table}[h]
+	\centering
+	\caption{静态工作点影响测试表}
+	\label{tab:3.1.1}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		工作电流 (mA)  & 1     & 2     & 3     & 4     & 5     \\
+		\hline
+		输出功率 (dBm) & -6.31 & -0.76 & 2.45  & 4.74  & 6.41  \\
+		\hline
+		谐振增益 (dB)  & 13.69 & 19.24 & 22.45 & 24.74 & 26.41 \\
+		\hline
+		3dB带宽 (kHz)  & 1633  & 1633  & 1633  & 1667  & 1667  \\
+		\hline
+	\end{tabular}
+\end{table}
+从表格中可以看出，增益随着工作电流的增加而增加，带宽随着工作电流的变化基本不变
+\subsection{双调谐小信号放大器实验}
+\subsubsection{测试电路搭建}
+按图3.1.5所示，连接实验板及测试设备，实验板的 \( \mathrm{SW}_3 \) 设为“10”状态，输入信号接 \( \mathrm{JP}_4 \)，输出信号出自 \( \mathrm{JP}_6 \)，并打开电源。将电路的静态工作电流调整到 \( 3\,\mathrm{mA} \) 左右。
+\subsubsection{耦合状态观测}
+实验板SW3状态的改变也就改变了双调谐放大器的耦合度。\( \mathrm{SW}_3 \) 设成“10”为弱耦合，\( \mathrm{SW}_3 \) 设成“01”为临界耦合，\( \mathrm{SW}_3 \) 设成“11”为强耦合，分别观测三种耦合状态下的放大器传输特性
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig6.jpg}
+	\caption{弱耦合特性曲线}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig7.jpg}
+	\caption{临界耦合特性曲线}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig8.jpg}
+	\caption{强耦合特性曲线}
+\end{figure}
+\subsubsection{特性测量}
+\begin{table}[h]
+	\centering
+	\caption{静态工作点影响测试表}
+	\begin{tabular}[h]{|c|c|c|c|c|}
+		\hline
+		耦合类型      & 单调谐 & 弱耦合 & 临界耦合 & 强耦合 \\
+		\hline
+		谐振增益 (dB) & 23.04  & 23.5   & 22.76    & 22.24  \\
+		\hline
+		通频带 (MHz)  & 1.567  & 0.767  & 1.2      & 1.867  \\
+		\hline
+		矩阵系数      & 10.062 & 3.999  & 3.167    & 2.642  \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section{数据分析}
+\subsection{静态工作点对谐振放大器的影响分析}
+根据表 \ref{tab:3.1.1} 的数据，当晶体管的静态工作电流由 $1\mathrm{mA}$ 增加到 $5\mathrm{mA}$ 时，输出功率由 $-6.31\mathrm{dBm}$ 增加到 $6.41\mathrm{dBm}$，谐振增益由 $13.69\mathrm{dB}$ 显著提高到 $26.41\mathrm{dB}$。这说明晶体管的交流放大倍数（跨导 $g_m$）随着静态工作电流 $I_C$ 的增大而增大，从而使得整体谐振增益增加。
+同时，从表格数据可以看出，在不同工作电流下，3dB带宽维持在 $1633\mathrm{kHz}$ 到 $1667\mathrm{kHz}$ 之间，变化非常微小。这说明改变晶体管的静态工作点主要影响放大器的增益，而对回路的等效品质因数 $Q_L$ 和总电容 $C_{\Sigma}$ 影响较小，因而对通频带带宽的影响不明显。
+
+\subsection{单调谐与双调谐耦合状态特性对比分析}
+根据前述的特性测量数据以及三种耦合状态的特性曲线：
+\begin{itemize}
+	\item \textbf{谐振增益}：弱耦合 ($23.5\mathrm{dB}$) $>$ 单调谐 ($23.04\mathrm{dB}$) $\approx$ 临界耦合 ($22.76\mathrm{dB}$) $>$ 强耦合 ($22.24\mathrm{dB}$)。
+	\item \textbf{通频带}：强耦合 ($1.867\mathrm{MHz}$) $>$ 单调谐 ($1.567\mathrm{MHz}$) $>$ 临界耦合 ($1.2\mathrm{MHz}$) $>$ 弱耦合 ($0.767\mathrm{MHz}$)。强耦合时频带最宽，但曲线顶部会出现双峰现象；弱耦合时频带最窄，呈单峰。
+	\item \textbf{选择性（矩形系数）}：强耦合 ($2.642$) $<$ 临界耦合 ($3.167$) $<$ 弱耦合 ($3.999$) $\ll$ 单调谐 ($10.062$)。矩形系数越小，接近于1，选择性越好。
+\end{itemize}
+综合对比可见，双调谐放大器相比于单调谐放大器，在矩形系数上有大幅度的下降（从 $10$ 左右降至 $2.6 \sim 4.0$ 之间），即选择性得到了极大的改善。在临界耦合状态下，可以在增益、通频带和选择性之间取得较好的折中，且频带顶部较为平坦。
+
+\section{思考题}
+\paragraph{高频小信号放大器的主要技术指标有哪些？}~\\
+高频小信号放大器的主要技术指标包括：
+\begin{enumerate}
+	\item 谐振频率（$f_0$）；
+	\item 谐振电压增益（$A_{V0}$）或功率增益（$A_{P0}$）；
+	\item 通频带（$BW_{3dB}$），即电压增益下降到0.707倍时的频带宽度；
+	\item 增益带宽积（$A_{V0} \cdot BW_{3dB}$），通常近似为常数；
+	\item 选择性，通常用矩形系数 $K_{V0.1}$ （20dB带宽与3dB带宽之比）来衡量，矩形系数越接近1，选择性越好。
+\end{enumerate}
+
+\paragraph{单级单调谐放大器的电压增益与那些因素有关？当谐振回路中的并联电阻R变化时，增益及带宽将怎样变化？当谐振放大器的静态工作点变化时，增益及带宽将怎样变化？}~\\
+（1）单级单调谐放大器的电压增益主要与晶体管的跨导（$y_{fe}$）、输入和输出端的接入系数（$p_1, p_2$）以及谐振回路的总等效并联导纳（$g_{\Sigma}$，即总并联电阻 $R_{\Sigma}$ 的倒数）有关。\\
+（2）当谐振回路中的并联电阻 $R$ 增大时，电压增益会增大（增益与并联电阻成正比）。同时，根据通频带公式 $BW = \frac{1}{2\pi R_{\Sigma} C_{\Sigma}}$，并联电阻 $R$ 的增大会导致通频带带宽变窄。\\
+（3）当谐振放大器的静态工作点变化时（例如静态电流 $I_C$ 增大），晶体管的跨导 $g_m$ 增大，从而使得谐振增益显著增加。而静态工作点的改变对晶体管的结电容和输出阻抗影响较小，因此回路的总等效电容和总电阻变化不大，通频带带宽基本保持不变。
+
+\paragraph{回路的谐振频率和那些参数有关？如何判断谐振回路处于谐振状态？}~\\
+（1）回路的谐振频率主要与谐振回路的等效电感 $L$ 和总等效电容 $C_{\Sigma}$ 有关，计算公式为 $f_0 = \frac{1}{2\pi\sqrt{LC_{\Sigma}}}$。通过调节电感量或电容量即可改变谐振频率。\\
+（2）判断谐振回路是否处于谐振状态的方法：
+\begin{itemize}
+	\item 使用频谱分析仪观察幅频特性曲线，当输出信号幅度（或增益）达到最大峰值时，对应的频率即为谐振频率，此时回路处于谐振状态。
+	\item 理论上，谐振时回路呈现纯电阻特性，即输入电压与电流的相位差为0。
+\end{itemize}
+\end{document}
